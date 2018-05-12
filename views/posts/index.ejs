@@ -1,0 +1,35 @@
+<% include ../partials/top %>
+
+    <div class="row">
+        <% if(posts.length>0) { %>
+            <% for(var i=0;i<posts.length;i++){ %>
+                <a href="#">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="" alt="Card image cap">
+                        <div class="card-body">
+                            <h4>
+                                <%= posts[i].title %>
+                            </h4>
+                            <p class="card-text">
+                                <%- posts[i].body %>
+                            </p>
+                            <br>
+                            <p>hey
+                                <%= posts[i].user.firstName  %>
+                            </p>
+                            
+
+                        </div>
+                    </div>
+                </a>
+                <% } %>
+                    <%}else{%>
+                        <p>No no no o no no</p>
+                        <% } %>
+    </div>
+
+
+
+
+
+    <% include ../partials/bottom %>
