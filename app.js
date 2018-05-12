@@ -8,12 +8,10 @@ const session = require('express-session');
 require('./models/User');
 require('./config/passport')(passport);
 
+app.set('view engine','ejs');
+const index = require('./routes/index');
 const auth = require('./routes/auth');
 mongoose.connect(require('./config/keys').mongoURI);
-
-app.get('/',(req,res)=>{
-    res.send('It works');
-})
 
 //app.use(cookieParser());
 app.use(session({
@@ -30,7 +28,7 @@ app.use((req,res,next)=>{
 })
 
 
-
+app.use('/',index);
 app.use('/auth',auth);
 app.listen(port,()=>{
 console.log(`Server Started ${port}`) 

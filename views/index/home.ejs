@@ -1,0 +1,15 @@
+<% include ../partials/top %>
+
+<div class="container">
+
+    <h1>Welcome</h1>
+    <p>Post your  stories  </p>
+    <% if(user){%>
+
+    <%} else{%>
+        <a class="btn red darken-1" href="/auth/google"><i class="fa fa-google left"></i> Login With Google</a>
+        <%}%>
+    
+</div>
+
+<% include ../partials/bottom %>
