@@ -2,6 +2,7 @@ const experss = require('express');
 const app = experss();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 const port = process.env.PORT || 3000;
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
@@ -16,10 +17,10 @@ const auth = require('./routes/auth');
 const posts = require('./routes/posts');
 mongoose.connect(require('./config/keys').mongoURI);
 
-
+app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json());
-//app.use(cookieParser());
+
 app.use(session({
     secret: 'keyboard cat',
     resave: false,

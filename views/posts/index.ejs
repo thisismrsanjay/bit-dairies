@@ -6,7 +6,13 @@
                 <a href="#">
                     <div class="card" style="width: 18rem;">
                         <img class="card-img-top" src="" alt="Card image cap">
+                        
                         <div class="card-body">
+                            <% if(user){if (user.id == posts[i].user.id) {%>
+                            <div>
+                                <a href="/posts/edit/<%= posts[i].id %>"><i class="fa fa-pencil"></i></a>
+                            </div>
+                            <%}}%>
                             <h4>
                                 <%= posts[i].title %>
                             </h4>
@@ -14,9 +20,13 @@
                                 <%- posts[i].body %>
                             </p>
                             <br>
+                            <img src="<%= posts[i].user.image %>" alt="Contact Person" style="height:100px;wigth:100px">
                             <p>hey
-                                <%= posts[i].user.firstName  %>
+                                <%= posts[i].user.firstName + posts[i].user.lastName %>
                             </p>
+                            <div>
+                                <a href="/posts/show/<%= posts[i].id %>">ReadMore</a>
+                            </div>
                             
 
                         </div>

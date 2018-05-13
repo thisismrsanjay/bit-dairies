@@ -19,12 +19,12 @@ const PostSchema = new Schema({
         default:true
     },
     comments:[{
-        commentsBody:{
+        commentBody:{
             type:String,
             required:true
         },
         commentDate:{
-            type:Date,
+            type:String,
             default:Date.now
         },
         commentUser:{

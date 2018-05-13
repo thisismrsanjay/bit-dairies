@@ -1,9 +1,38 @@
 <% include ../partials/top %>
-
-
-
 <h1>edit posts </h1>
 
+<div class="card container pb-3 mt-5">
+        <form action="/posts/<%= post.id %>?_method=PUT" method="post" >
+            <input type="hidden" name="_method" value="PUT">
+            <h1>Edit POST</h1>
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input value="<%= post.title %>"  name="title" type="text" class="form-control" placeholder="title">
+            </div>
+            <div class="form-group">
+                    <label for="inputStatus">Status</label>
+                    <select name="status" id="inputStatus" class="form-control">
+                      <option  value="public" <% if(post.status=="public"){%> selected <%}%>  >Public</option>
+                      <option value="private" <% if(post.status=="private"){%> selected <%}%> >Private</option>
+                      <option  value="unpublished" <% if(post.status=="unpublished"){%> selected <%}%> >Unpublished</option>
+                    </select>
+
+            </div>
+            <div class="form-group">
+                <label for="textField">What do i do</label><br>
+                <textarea name="body" id="" cols="100" rows="5"><%- post.body %></textarea>
+            </div>
+            <div class="form-group form-check">
+                <input name="comments" type="checkbox" class="form-check-input" id="comments">
+                <label  class="form-check-label" for="comments">Allow Comments </label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+    <script>CKEDITOR.replace('body') </script>
+   
 
 
 
