@@ -1,7 +1,7 @@
 <% include ../partials/top %>
 
     <div class="card container pb-3 mt-5">
-        <form action="/posts" method="post" >
+        <form action="/posts" enctype="multipart/form-data" method="post" >
             <h1>ADD POST</h1>
             <div class="form-group">
                 <label for="title">Title</label>
@@ -21,9 +21,10 @@
                 <textarea name="body" id="" cols="100" rows="5"></textarea>
             </div>
             <div class="form-group form-check">
-                <input name="comments" type="checkbox" class="form-check-input" id="comments">
-                <label  class="form-check-label" for="comments">Allow Comments </label>
+                <input name="comments" type="checkbox" class="form-check-input" id="comments" checked>
+                <label  class="form-check-label"for="comments">Allow Comments </label>
             </div>
+            <input  name="postImage"  type="file">
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>

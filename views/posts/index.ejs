@@ -1,33 +1,73 @@
 <% include ../partials/top %>
-
-    <div class="row">
+    
         <% if(posts.length>0) { %>
+            <div class="row mt-4">
+            <% for(var i=0;i<posts.length;i++){ %>
+
+                <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card card-inverse card-info">
+                        <img class="card-img-top" src="<%= typeof posts[i].postImage != 'undefined' ?posts[i].postImage.slice(7):'http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif' %>">
+                        <div class="card-block">
+                            <figure class="profile">
+                                <img src="<%= posts[i].user.image %>" alt="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" class="profile-avatar">
+                            </figure>
+                            <h4 class="card-title mt-4 ">
+                                <%= posts[i].user.firstName + posts[i].user.lastName %>
+                                <% if(user){if (user.id == posts[i].user.id) {%>
+                                        <a href="/posts/edit/<%= posts[i].id %>" style="color:#f441af;float: right;">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                    <%}}%>
+                            </h4> 
+                            <h3>
+                                <%= posts[i].title %>
+                            </h3>
+                            <div class="meta card-text">
+                                <a>
+                                    <%= posts[i].status %>
+                                </a>
+                            </div>
+                            <div class="card-text">
+                                <%- posts[i].body %><a  style="color:#f441af" href="/posts/show/<%= posts[i].id %>">ReadMore</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <% } %>
+                </div>
+            <%}else{%>
+                            <p>No no no o no no</p>
+            <% } %>
+
+                <!-- <% if(posts.length>0) { %>
             <% for(var i=0;i<posts.length;i++){ %>
                 <a href="#">
                     <div class="card" style="width: 18rem;">
                         <img class="card-img-top" src="" alt="Card image cap">
-                        
+
                         <div class="card-body">
                             <% if(user){if (user.id == posts[i].user.id) {%>
-                            <div>
-                                <a href="/posts/edit/<%= posts[i].id %>"><i class="fa fa-pencil"></i></a>
-                            </div>
-                            <%}}%>
-                            <h4>
-                                <%= posts[i].title %>
-                            </h4>
-                            <p class="card-text">
-                                <%- posts[i].body %>
-                            </p>
-                            <br>
-                            <img src="<%= posts[i].user.image %>" alt="Contact Person" style="height:100px;wigth:100px">
-                            <p>hey
-                                <%= posts[i].user.firstName + posts[i].user.lastName %>
-                            </p>
-                            <div>
-                                <a href="/posts/show/<%= posts[i].id %>">ReadMore</a>
-                            </div>
-                            
+                                <div>
+                                    <a href="/posts/edit/<%= posts[i].id %>">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                </div>
+                                <%}}%>
+                                    <h4>
+                                        <%= posts[i].title %>
+                                    </h4>
+                                    <p class="card-text">
+                                            <%- posts[i].body %>
+                                    </p>
+                                    <br>
+                                    <img src="<%= posts[i].user.image %>" alt="Contact Person" style="height:100px;wigth:100px">
+                                    <p>hey
+                                        <%= posts[i].user.firstName + posts[i].user.lastName %>
+                                    </p>
+                                    <div>
+                                        <a href="/posts/show/<%= posts[i].id %>">ReadMore</a>
+                                    </div>
+
 
                         </div>
                     </div>
@@ -35,11 +75,11 @@
                 <% } %>
                     <%}else{%>
                         <p>No no no o no no</p>
-                        <% } %>
-    </div>
+                        <% } %> -->
 
 
 
 
 
-    <% include ../partials/bottom %>
+
+                <% include ../partials/bottom %>

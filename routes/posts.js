@@ -5,7 +5,29 @@ const mongoose = require('mongoose');
 const post = mongoose.model('Post');
 const User = mongoose.model('User');
 const moment = require('moment');
+const multer = require('multer');
+const path = require('path');
 
+
+const storage = multer.diskStorage({
+    destination: (req,file,cb)=>{
+        cb(null,'./public/uploads/');
+    },
+    filename: (req,file,cb)=>{
+        cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+})
+const fileFilter = (req,file,cb)=>{
+    if(file.mimetype==='image/jpeg'|| file.mimetype==='image/png')
+    {
+        cb(null,true);
+    }else{
+        cb(null,false);
+    }
+}
+const upload = multer({storage:storage,
+    fileSize:1024*1024*5,
+})
 
 router.get('/', (req, res) => {
     post.find({ status: 'public' }).populate('user').sort({date:'desc'})
@@ -71,19 +93,23 @@ router.get('/my',ensureAuthenticated,(req,res)=>{
 })
 
 
-router.post('/', (req, res) => {
+router.post('/',upload.single('postImage'), (req, res) => {
     let allowComments;
     if (req.body.allowComments) {
         allowComments = true;
     } else {
         allowComments = false;
     }
+    if(req.file=='undefined'){
+        req.file.path="../public/uploads/handwriting.JPG"
+    }
     const newStory = {
         title: req.body.title,
         body: req.body.body,
         status: req.body.status,
         allowComments: allowComments,
-        user: req.user.id
+        user: req.user.id,
+        postImage:req.file.path
     }
     new post(newStory).save((err, post) => {
         if (err) {
