@@ -1,27 +1,57 @@
 <% include ../partials/top %>
-<h1>Welcome 
-    <% if(user){  %>
-       <%=user.firstName%>
-    <%}%>
- </h1>
-<h4>Your POSTS</h4>
-<% if(posts.length>0) { %>
-    <% for(var i=0;i<posts.length;i++){ %>
-       <div class="card">
-<p><%=posts[i].status %></p>
-    <p><%=posts[i].title %></p>
-    <p><%- posts[i].body %> </p>
-        <a href="/posts/edit/<%= posts[i].id %>" type="button" class="btn btn-info">edit post</a>
-        <form action="/posts/<%= posts[i].id %>?_method=DELETE"method="post">
-            <input type="hidden" name="_method" value="DELETE">
-            <button type="submit" class="btn btn-danger">delete</button>
-        </form>
-    </div>
-    <% } %>
-            <%}else{%>
-        <h4>No posts what are you waiting for</h4>
-        <% } %>
+    <h1>Welcome
+        <% if(user){  %>
+            <%=user.firstName%>
+                <%}%>
+    </h1>
+    <h4>Your POSTS</h4>
 
 
 
-<% include ../partials/bottom %>
+
+
+
+
+    <% if(posts.length>0) { %>
+        <% for(var i=0;i<posts.length;i++){ %>
+
+
+            <a href="/posts/show/<%= posts[i].id %>">
+            <div class="card mb-3" >
+                
+                <img class="card-img-top " style="height: 300px; object-fit: cover;" src="<%= typeof posts[i].postImage != 'undefined' ?posts[i].postImage.slice(7):'http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif' %>"alt="Card image cap">
+                <div class="card-body">
+                        
+                        <a href="/posts/edit/<%= posts[i].id %>" style="width:35px" class="btn btn-info  float-right"><i  class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a>
+                    <form action="/posts/<%= posts[i].id %>?_method=DELETE" class=" float-right" method="post">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></button>
+                        <a></a>
+                    </form>
+                    <h3 class="card-title">
+                        <%=posts[i].title %>
+                    </h3>
+                    <p class="card-text">
+                        <%- posts[i].body %>
+                    </p>
+                    <p class="card-text">
+                        <small class="text-muted">
+                            <%=posts[i].status %>
+                        </small>
+                    </p>
+                    
+                    
+                </div>
+            </div>
+            </a>
+
+
+
+            <% } %>
+                <%}else{%>
+                    <h4>No posts what are you waiting for</h4>
+                    <% } %>
+
+
+
+                        <% include ../partials/bottom %>

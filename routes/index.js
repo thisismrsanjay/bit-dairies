@@ -12,6 +12,7 @@ router.get('/dashboard',ensureAuthenticated,(req,res)=>{
     post.find({user:req.user.id},(err,data)=>{
         if(err)throw err;
         else{
+            
             res.render('index/dashboard',{
                 posts:data
             });

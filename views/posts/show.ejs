@@ -1,8 +1,13 @@
 <% include ../partials/top %>
+</div>
 
-<h3><%= post.title %></h3>
-<p><%= date %></p>
+
+<img  src="<%= typeof post.postImage != 'undefined' ? post.postImage.slice(6):'http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif' %>"alt="Card image cap" class="w-100" >
+<div class="container mt-3">
+<h2><%= post.title %></h2>
+
 <p><%- post.body %></p>
+
 <div class="card">
         <% if(user){if (user.id == post.user.id) {%>
             <div>
@@ -14,8 +19,10 @@
     </div>
     <div class="card-body">
         <img src="<%= post.user.image %>" alt="" style="height: 100px;width: 100px;">
-        <a href="/posts/user/<%=user.id%>">More From <%= post.user.firstName + post.user.lastName %>  </a>
+        <a href="/posts/user/<%=post.user.id%>">More From <%= post.user.firstName + post.user.lastName %>  </a>
     </div>
+    
+    <p><%= date %></p>
     <% if(post.allowComments) {%>
         <div class="card">
             <div class="card-content">
@@ -49,12 +56,37 @@
 
 </div>
 <hr>
+
+<div class="row">
+        <div class="container">
+            <div class="col-md-4 mx-auto">
+                <div class="card">
+                    <!-- user profile image -->
+                    <img class="card-img-top" src="profile.jpg" alt="Profile">
+                    <div class="card-body text-center">
+                        <!-- user name -->
+                        <h4 class="card-title">John Doe</h4>
+                        <!-- job title / comany name -->
+                        <p class="card-text text-muted">UI/UX Designer</p>
+                        <!-- social profile links -->
+                        <a href="#" class="social twitter"><i class="fa fa-twitter"></i></a>
+                        <a href="#" class="social facebook"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="social google-plus"><i class="fa fa-google-plus"></i></a>
+                        <a href="#" class="social linkedin"><i class="fa fa-linkedin"></i></a>
+                        <!-- CTA button -->
+                        <p class="mt-4"><a href="#" class="btn btn-primary">Contact me!</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <h2>what is cool all the stories from that user think how i am goona do it</h2>
 
 
 
-
-
-
+    
+</div>
+<div>
 
 <% include ../partials/bottom %>
